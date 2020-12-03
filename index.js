@@ -1,6 +1,6 @@
 console.log('Hello world!!!!');
 const express = require('express');
-
+const port = process.env.PORT || 5000;
 const shortid = require('shortid');
 
 const server = express();
@@ -49,6 +49,7 @@ const User = {
     const user = users.find((user) => user.id === id);
     if (user) {
       users = users.filter((u) => u.id !== id);
+      console.log(users);
     }
     return user;
   },
@@ -123,6 +124,6 @@ server.get('*', (req, res) => {
   res.status(404).json({ message: 'Page Not found' });
 });
 
-server.listen(5000, () => {
-  console.log('listening on port 5000');
+server.listen(port, () => {
+  console.log(`listening on ${port}`);
 });
